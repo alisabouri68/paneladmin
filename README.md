@@ -1,5 +1,8 @@
 # 🚀 پنل مدیریت (Admin Panel) 
+[DEMO](https://paneladmin-seven.vercel.app/)
 
+
+ 
 <div dir="rtl">
 
   
@@ -48,7 +51,7 @@
 ### مراحل نصب
 ```bash
 # 1. کلون کردن ریپازیتوری
-git clone https://github.com/[YOUR_USERNAME]/admin-panel.git
+git clone https://github.com/alisabouri68/admin-panel.git
 
 # 2. نصب وابستگی‌ها
 cd admin-panel
