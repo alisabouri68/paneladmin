@@ -1,7 +1,9 @@
 # 🚀 پنل مدیریت (Admin Panel) 
 
 <div dir="rtl">
-  
+  ![Image](https://github.com/user-attachments/assets/63dae0cb-44c8-4f4a-a2a6-2daa60f13c1c)
+  ![Image](https://github.com/user-attachments/assets/72288790-8e9d-4bb0-a996-c25a06b2910d)
+  ![Image](https://github.com/user-attachments/assets/24bd3bcc-9b17-444e-8ed8-84d6929e41b2)
 ![Image](https://github.com/user-attachments/assets/790436a6-8a83-4404-bdb2-442fb2fc1858)
 
 یک پنل مدیریت مدرن و واکنشگرا ساخته شده با:
