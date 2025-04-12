@@ -2,7 +2,7 @@
 
 <div dir="rtl">
   
-![Admin Panel Preview](screenshot.png) <!-- اضافه کردن اسکرین شات -->
+![Admin Panel Preview]([screenshot.png](https://github.com/alisabouri68/admin-panel/issues/4#issue-2990688995)) <!-- اضافه کردن اسکرین شات -->
 
 یک پنل مدیریت مدرن و واکنشگرا ساخته شده با:
 
