@@ -16,6 +16,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no"
+        />
+      </head>
       <body>
         <GlobalStyles
           styles={{
@@ -31,7 +37,7 @@ export default function RootLayout({ children }) {
         <ThemeMode>
           <Alerts />
           <Modal>
-            <Grid container spacing={3} paddingRight={3}>
+            <Grid container spacing={3} padding={1}>
               <Grid size="auto" display={{ xs: "none", md: "unset" }}>
                 <MiniDrawer />
               </Grid>
