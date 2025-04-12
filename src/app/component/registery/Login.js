@@ -23,8 +23,8 @@ import { useLoginStore } from "@/app/store/IsLogin";
 import { UseModalStore } from "@/app/store/IsModal";
 function Login() {
   const { isLoggedIn, login, logout } = useLoginStore();
-  const {setIsModal } = UseModalStore();
-  const {setIsAlert,setAlertContent,setAlertColor } = UseAlertStore();
+  const { setIsModal } = UseModalStore();
+  const { setIsAlert, setAlertContent, setAlertColor } = UseAlertStore();
   const [userName, setUserName] = useState("aliEmamiSabouri");
   const [password, setPassword] = useState("0682440016");
   useEffect(() => {
@@ -36,15 +36,25 @@ function Login() {
   }, []);
   const submitHandler = () => {
     if (userName === "aliEmamiSabouri" && password === "0682440016") {
-      setAlertContent(" You have successfully logged in")
-      setAlertColor("success")
-      setIsAlert();
+      setAlertContent(" You have successfully logged in");
+      setAlertColor("success");
+      setIsModal(false);
+      login();
       setTimeout(() => {
-        login();
-        setIsModal(false);
         setIsAlert();
-      }, 5000);
+      }, 2000);
+      setTimeout(() => {
+        setIsAlert();
+      }, 8000);
     } else {
+      setAlertContent(" No user with these specifications was found");
+      setAlertColor("error");
+      setTimeout(() => {
+        setIsAlert();
+      }, 2000);
+      setTimeout(() => {
+        setIsAlert();
+      }, 8000);
       logout();
     }
   };
@@ -55,8 +65,12 @@ function Login() {
       alignItems="center"
       minHeight="100vh"
       minWidth="100vw"
-      sx={{ backgroundColor: "transparent" ,position:"relative",zIndex:"150"}}
-      border="1px solid blue"
+      sx={{
+        backgroundColor: "#0a0a0a63",
+        backdropFilter: "blur(2px)",
+        position: "relative",
+        zIndex: "150",
+      }}
     >
       <Grid
         size={{ xs: 12, md: 6, lg: 4, xl: 3 }}
@@ -64,7 +78,6 @@ function Login() {
         boxShadow={3}
         borderRadius="7px"
         overflow="hidden"
-        sx={{ backgroundColor: "var(--foreground)" }}
       >
         <Grid
           item
@@ -98,7 +111,6 @@ function Login() {
           display="grid"
           gap="10px"
           padding="10px 20px"
-          sx={{ backgroundColor: "white" }}
         >
           <TextField
             size="small"

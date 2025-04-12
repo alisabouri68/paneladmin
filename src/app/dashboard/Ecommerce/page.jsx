@@ -26,7 +26,7 @@ function page() {
                         <Typography variant="h6" color="">Popular Products</Typography>
                         <TableProducts />
                     </Grid>
-                    <Grid container direction={"column"} size={{ xs: 12, md: 3 }} justifyContent={'center'} alignItems={'center'}>
+                    <Grid container position={"relative"} direction={"column"} size={{ xs: 12, md: 3 }} justifyContent={'flex-start'} alignItems={'center'}>
                         <PieAnimation />
                     </Grid>
                 </Grid>

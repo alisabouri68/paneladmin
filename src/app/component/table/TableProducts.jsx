@@ -18,6 +18,7 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import TableHead from '@mui/material/TableHead';
 
 function TablePaginationActions(props) {
     const theme = useTheme();
@@ -81,15 +82,18 @@ TablePaginationActions.propTypes = {
 };
 
 export default function TableProducts() {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState({ products: [] });
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch("https://67cd78d0dd7651e464ee7491.mockapi.io/api/v1/products")
-            .then((res) => res.json())
+        fetch("https://dummyjson.com/products")
+            .then((res) => {
+                if (!res.ok) throw new Error('Failed to fetch');
+                return res.json();
+            })
             .then((datas) => {
                 setData(datas);
                 setLoading(false);
@@ -100,7 +104,9 @@ export default function TableProducts() {
             });
     }, []);
 
-    const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
+    const emptyRows = page > 0
+        ? Math.max(0, (1 + page) * rowsPerPage - data.products.length)
+        : 0;
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -111,24 +117,26 @@ export default function TableProducts() {
         setPage(0);
     };
 
-    function createData(name, title, price, discount) {
-        return { name, title, price, discount };
-    }
-
-    const rows = data
-        .map((item) => {
-            return createData(
-                item.img && item.img[0] ? item.img[0] : '/default-image.jpg', // Handle missing image
-                item.title,
-                item.price,
-                item.discount
-            );
-        })
-        .sort((a, b) => (a.price < b.price ? -1 : 1));
-
+    const rows = data.products
+        ?.map((item) => ({
+            id: item.id,
+            image: item.images?.[0],
+            title: item.title,
+            price: item.price,
+            discount: item.discountPercentage
+        }))
+        ?.sort((a, b) => a.price - b.price);
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Image</TableCell>
+                        <TableCell align="right">Title</TableCell>
+                        <TableCell align="right">Price</TableCell>
+                        <TableCell align="right">Discount (%)</TableCell>
+                    </TableRow>
+                </TableHead>
                 <TableBody>
                     {loading ? (
                         <TableRow>
@@ -144,28 +152,31 @@ export default function TableProducts() {
                         </TableRow>
                     ) : (
                         (rowsPerPage > 0
-                            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                            ? rows?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             : rows
-                        ).map((row, index) => (
-                            <TableRow key={index}>
+                        )?.map((row) => (
+                            <TableRow key={row.id}>
                                 <TableCell component="th" scope="row">
-                                    <Image src={row.name} width={100} height={100} alt={row.title} />
+                                    <Image
+                                        src={row.image}
+                                        width={100}
+                                        height={100}
+                                        alt={row.title}
+                                        style={{ objectFit: 'cover' }}
+                                        onError={(e) => {
+                                            e.target.src = '/default-image.jpg';
+                                        }}
+                                    />
                                 </TableCell>
-                                <TableCell style={{ width: 160 }} align="right">
-                                    {row.title}
-                                </TableCell>
-                                <TableCell style={{ width: 160 }} align="right">
-                                    {row.price}
-                                </TableCell>
-                                <TableCell style={{ width: 160 }} align="right">
-                                    {row.discount}
-                                </TableCell>
+                                <TableCell align="right">{row.title}</TableCell>
+                                <TableCell align="right">${row.price}</TableCell>
+                                <TableCell align="right">{row.discount}%</TableCell>
                             </TableRow>
                         ))
                     )}
                     {emptyRows > 0 && (
                         <TableRow style={{ height: 53 * emptyRows }}>
-                            <TableCell colSpan={6} />
+                            <TableCell colSpan={4} />
                         </TableRow>
                     )}
                 </TableBody>
@@ -173,8 +184,8 @@ export default function TableProducts() {
                     <TableRow>
                         <TablePagination
                             rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-                            colSpan={3}
-                            count={rows.length}
+                            colSpan={4}
+                            count={data.products?.length || 0}
                             rowsPerPage={rowsPerPage}
                             page={page}
                             slotProps={{

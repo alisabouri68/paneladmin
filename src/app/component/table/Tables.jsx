@@ -42,15 +42,15 @@ const createData = (name, Sessions, BounceRate, Transactions) => {
     return { name, Sessions, BounceRate, Transactions };
 };
 
-const rows = [
-    createData(<FaChrome fontSize={25} />, "10853(52%)", "52.80%", "566(92%)"),
-    createData(<FaEdge fontSize={25} />, "2545(47%)", "47.54%", "498(81%)"),
-    createData(<FaInternetExplorer fontSize={25} />, "1836(38%)", "41.12%", "455(74%)"),
-    createData(<FaOpera fontSize={25} />, "1958(31%)", "36.82%", "361(61%)"),
-    createData(<FaChrome fontSize={25} />, "10853(52%)", "52.80%", "566(92%)"),
+const rowss = [
+    createData("Organic search", "10853(52%)", "52.80%", "566(92%)"),
+    createData("Direct", "2545(47%)", "47.54%", "498(81%)"),
+    createData("Referal", "1836(38%)", "41.12%", "455(74%)"),
+    createData("Email", "1958(31%)", "36.82%", "361(61%)"),
+    createData("Social", "10853(52%)", "52.80%", "566(92%)")
 ];
 
-export default function TableBrowser() {
+export default function Tables() {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -70,7 +70,7 @@ export default function TableBrowser() {
                 >
                     <Table
                         sx={{
-                            minWidth: { xs: 350,  md:800 },
+                            minWidth: { xs: 350, md: 800 },
                             '& .MuiTableCell-root': {
                                 whiteSpace: 'nowrap'
                             }
@@ -86,12 +86,10 @@ export default function TableBrowser() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {rows.map((row, index) => (
+                            {rowss.map((row, index) => (
                                 <StyledTableRow key={`${row.name}-${index}`}>
                                     <StyledTableCell component="th" scope="row">
-                                        {React.cloneElement(row.name, {
-                                            fontSize: isMobile ? 20 : 25
-                                        })}
+                                    {row.name}
                                     </StyledTableCell>
                                     <StyledTableCell align="right">{row.Sessions}</StyledTableCell>
                                     <StyledTableCell align="right">{row.BounceRate}</StyledTableCell>
@@ -105,3 +103,16 @@ export default function TableBrowser() {
         </Grid>
     );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

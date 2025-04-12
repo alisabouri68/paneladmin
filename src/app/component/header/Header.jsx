@@ -9,6 +9,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import { UseNaveOpenStore } from '@/app/store/NavIsOpen';
+import AccountMenu from './AccountMenu';
 
 function Header() {
     const { isOpen, setIsOpen } = UseNaveOpenStore()
@@ -41,10 +42,11 @@ function Header() {
                 <Badge badgeContent={4} color="error" >
                     <NotificationsIcon color="action" sx={{ fontSize: 30 }} />
                 </Badge>
-                <Avatar
+                {/* <Avatar
                     alt="AliEmamiSabouri"
                     src="https://dummyjson.com/icon/michaelw/128"
-                />
+                /> */}
+                <AccountMenu />
 
             </Stack>
         </Grid >

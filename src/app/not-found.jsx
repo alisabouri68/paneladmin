@@ -14,8 +14,7 @@ function NotFound() {
             alignItems="center"
             minHeight="100vh"
             minWidth="100vw"
-            sx={{ backgroundColor: "transparent", position: "relative", zIndex: "150" }}
-            border="1px solid blue"
+            sx={{ backgroundColor: "black", position: "relative", zIndex: "150" }}
         >
             <Grid
                 size={{ xs: 12, md: 6, lg: 4, xl: 3 }}

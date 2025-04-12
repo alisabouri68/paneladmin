@@ -2,12 +2,13 @@
 import * as React from 'react';
 import { LineChart } from '@mui/x-charts/LineChart';
 import { useResizeDetector } from 'react-resize-detector';
+import { Grid } from '@mui/material';
 
 export default function ChartLines() {
     const { width, height, ref } = useResizeDetector();
 
     return (
-        <div ref={ref} style={{ width: '100%', height: '400px' }}>
+        <Grid ref={ref} style={{ width: '100%', height: '400px' }}>
             <LineChart
                 xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
                 series={[
@@ -21,6 +22,6 @@ export default function ChartLines() {
                 width={width}
                 height={height}
             />
-        </div>
+        </Grid>
     );
 }
