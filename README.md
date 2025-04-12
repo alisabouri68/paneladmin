@@ -23,7 +23,7 @@
 - **فریمورک Frontend**: Next.js 15.2.4
 - **UI Library**: Material-UI (MUI) v5
 - **State Management**: Zustand
-- **نمودارها**: Chart.js
+- **نمودارها**: MUI X Charts
 - **ایکون‌ها**: Material Icons
 - **API**: Next.js API Routes
 
