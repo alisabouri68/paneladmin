@@ -128,7 +128,7 @@ export default function TableProducts() {
         ?.sort((a, b) => a.price - b.price);
     return (
         <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+            <Table sx={{ minWidth: 350 }} aria-label="custom pagination table">
                 <TableHead>
                     <TableRow>
                         <TableCell>Image</TableCell>
