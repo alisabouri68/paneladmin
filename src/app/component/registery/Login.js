@@ -66,8 +66,8 @@ function Login() {
       minHeight="100vh"
       minWidth="100vw"
       sx={{
-        backgroundColor: "#0a0a0a63",
-        backdropFilter: "blur(2px)",
+        backgroundColor: "white",
+        // backdropFilter: "blur(2px)",
         position: "relative",
         zIndex: "150",
       }}
